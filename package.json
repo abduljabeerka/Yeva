@@ -1,0 +1,28 @@
+{
+  "name": "yevamed-immersive-healthcare-storefront",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.0.7",
+    "@react-three/fiber": "^9.1.2",
+    "lucide-react": "^0.468.0",
+    "next": "^16.4.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "three": "^0.174.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/three": "^0.174.0",
+    "typescript": "^5.8.2"
+  },
+  "description": "YEVA MED immersive 3D medical wear and healthcare essentials storefront with brochure-grounded content and Shopify integration"
+}
