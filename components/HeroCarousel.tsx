@@ -203,18 +203,6 @@ export default function HeroCarousel() {
                     <h1 className="hero-content-name">{item.title}</h1>
                     <p className="hero-content-subtitle">{item.subtitle}</p>
                     <p className="hero-content-des">{item.description}</p>
-                    
-                    <div className="hero-content-actions">
-                      <Link href={item.ctaHref} className="hero-cta-button">
-                        <span>{item.ctaText}</span>
-                        <ArrowRight size={15} />
-                      </Link>
-                      {item.secondaryText && item.secondaryHref && (
-                        <Link href={item.secondaryHref} className="hero-secondary-link">
-                          <span>{item.secondaryText}</span>
-                        </Link>
-                      )}
-                    </div>
                   </div>
                 )}
 
@@ -230,35 +218,49 @@ export default function HeroCarousel() {
           })}
         </div>
 
-        {/* Carousel Navigation Buttons (CodePen style < and >) */}
-        <div className="hero-carousel-controls">
-          <button 
-            type="button" 
-            className="hero-nav-btn prev" 
-            onClick={handlePrev}
-            aria-label="Previous slide"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          
-          <button 
-            type="button" 
-            className="hero-nav-btn next" 
-            onClick={handleNext}
-            aria-label="Next slide"
-          >
-            <ChevronRight size={20} />
-          </button>
+        {/* Middle Controls Group: Next/Prev Navigation Buttons + Active Slide Action Buttons */}
+        <div className="hero-middle-controls" key={`middle-controls-${animKey}`}>
+          <div className="hero-nav-cluster">
+            <button 
+              type="button" 
+              className="hero-nav-btn prev" 
+              onClick={handlePrev}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={19} />
+            </button>
+            
+            <button 
+              type="button" 
+              className="hero-nav-btn next" 
+              onClick={handleNext}
+              aria-label="Next slide"
+            >
+              <ChevronRight size={19} />
+            </button>
 
-          <button
-            type="button"
-            className="hero-play-toggle"
-            onClick={() => setIsPlaying(!isPlaying)}
-            aria-label={isPlaying ? 'Pause auto-slide' : 'Play auto-slide'}
-            title={isPlaying ? 'Pause' : 'Play'}
-          >
-            {isPlaying ? <Pause size={13} /> : <Play size={13} />}
-          </button>
+            <button
+              type="button"
+              className="hero-play-toggle"
+              onClick={() => setIsPlaying(!isPlaying)}
+              aria-label={isPlaying ? 'Pause auto-slide' : 'Play auto-slide'}
+              title={isPlaying ? 'Pause' : 'Play'}
+            >
+              {isPlaying ? <Pause size={13} /> : <Play size={13} />}
+            </button>
+          </div>
+
+          <div className="hero-cta-cluster">
+            <Link href={activeSlide.ctaHref} className="hero-cta-button">
+              <span>{activeSlide.ctaText}</span>
+              <ArrowRight size={15} />
+            </Link>
+            {activeSlide.secondaryText && activeSlide.secondaryHref && (
+              <Link href={activeSlide.secondaryHref} className="hero-secondary-link">
+                <span>{activeSlide.secondaryText}</span>
+              </Link>
+            )}
+          </div>
         </div>
 
         {/* Slide Counter & Dots */}

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef, useState } from 'react';
 import { Activity, ArrowUpRight, CheckCircle2, ShieldCheck, Stethoscope, Sparkles, Box } from 'lucide-react';
 import ElasticFrame from './ElasticFrame';
 
@@ -89,6 +90,17 @@ const pillars: PillarCard[] = [
 ];
 
 export default function ThreePillarsSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeMobileIdx, setActiveMobileIdx] = useState(0);
+
+  const handleMobileScroll = () => {
+    if (!scrollRef.current) return;
+    const scrollLeft = scrollRef.current.scrollLeft;
+    const cardWidth = scrollRef.current.offsetWidth * 0.78;
+    const idx = Math.round(scrollLeft / cardWidth);
+    setActiveMobileIdx(Math.min(Math.max(0, idx), pillars.length - 1));
+  };
+
   return (
     <section className="pillars-section" id="three-pillars">
       <div className="section-container">
@@ -105,7 +117,7 @@ export default function ThreePillarsSection() {
           </p>
         </div>
 
-        <div className="pillars-grid">
+        <div className="pillars-grid" ref={scrollRef} onScroll={handleMobileScroll}>
           {pillars.map((pillar) => (
             <ElasticFrame
               key={pillar.number}
@@ -165,6 +177,16 @@ export default function ThreePillarsSection() {
                 </div>
               </article>
             </ElasticFrame>
+          ))}
+        </div>
+
+        {/* Mobile Swipe Indicators (Visible only on mobile) */}
+        <div className="pillars-mobile-dots" aria-hidden="true">
+          {pillars.map((_, i) => (
+            <span
+              key={i}
+              className={`pillar-dot ${activeMobileIdx === i ? 'active' : ''}`}
+            />
           ))}
         </div>
       </div>
