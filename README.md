@@ -1,6 +1,41 @@
-# YEVA — Volumetric 3D Shopify Storefront
+# YEVA MED — Healthcare Wear & Essentials Storefront
 
-A Next.js App Router storefront for YEVA medical scrubs. This art direction replaces the earlier runway-like 3D approach with a volumetric, dark architectural showroom. It uses a continuous camera journey through a 3D environment, custom garment geometry, animated fabric surfaces, lighting, fog, reflections and pointer parallax.
+A modern Next.js storefront for YEVA medical scrubs, acoustic sedescopes, and course-wise care kits. The latest redesign removes heavy 3D WebGL animations and introduces a high-performance horizontal hero carousel inspired by CodePen, a 3-column clinical pillar ecosystem, a "Shop by Color" flat-lay showcase, a "Shop Bestsellers" studio collection with swatch pickers, a verified customer feedback section (10,615+ reviews), and comprehensive fabric & institutional details.
+
+## Recent Storefront Redesign
+
+1. **Top Hero Section — Horizontal Expanding Carousel**:
+   - Replaced heavy 3D elements with an animated horizontal expanding card slider inspired by CodePen (`MDJAmin/pen/GgpdKPy`).
+   - Staggered blur-to-focus animations for title, subtitle, and CTA actions.
+   - Floating thumbnail previews on the right with direct click-to-slide navigation, auto-advance timer, and touch swipe gestures.
+
+2. **Second Section — 3-Column Clinical Ecosystem**:
+   - **Column 1 — Acoustic Sedescope**: Surgical-grade stainless steel chestpiece, tunable dual-frequency diaphragm, anatomical binaurals.
+   - **Column 2 — Clinical Scrubs**: YEVA RYX™ 4-way stretch, SILV-SHIELD™ liquid-repellent and anti-microbial barrier, 5-8 functional pockets.
+   - **Column 3 — Course-Wise CareKits**: Curated medical student kits for MBBS, Nursing, Physiotherapy & Allied Sciences.
+
+3. **Third Section — Shop by Color**:
+   - Folded studio flat-lay views on matching solid color fields: Espresso, Midnight Galaxy, Tuscan Olive, Royal Navy, Midnight Teal, Burgundy Wine, and Slate Charcoal.
+   - Interactive Quick View modal with size selection (XS to XXL) and direct bag addition.
+
+4. **Fourth Section — Shop Bestsellers**:
+   - Studio model photography showcasing top-demanded scrubs, sedescopes, and care kits.
+   - Interactive color swatches row beneath each product card.
+   - Star ratings (4.80–4.98) and review counts.
+   - Direct Quick Add action and category filters.
+
+5. **Fifth Section — Customer Reviews & Feedback**:
+   - Overall rating aggregate of 4.9/5 from 10,615+ verified healthcare reviews.
+   - Role filters (Surgeons & Residents, ICU Nurses, Medical Students).
+   - Real clinical testimonials with verified hero badges and helpful vote counters.
+   - Interactive "Write a Review" submission modal.
+
+6. **Balance Sections — Fabric Innovation & Care**:
+   - Material science study: YEVA RYX™ (4-way stretch), YEVA LITE™ (featherlight air-flow), and YEVA CORE™ (hospital laundry certified).
+   - Why Healthcare Heroes Choose YEVA: 6 core value pillars.
+   - Institutional and Team Orders: Custom embroidery, department color-coding, student batch discounts, and direct helplines.
+   - FAQ Accordion and Newsletter discount offer.
+   - Luxury dark footer with site navigation, contact numbers, and pan-India locations (Delhi, Mangalore, Bangalore).
 
 ## What makes this version genuinely 3D
 
