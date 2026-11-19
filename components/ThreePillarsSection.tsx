@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Activity, ArrowUpRight, CheckCircle2, ShieldCheck, Stethoscope, Sparkles, Box } from 'lucide-react';
+import ElasticFrame from './ElasticFrame';
 
 interface PillarCard {
   number: string;
@@ -106,53 +107,64 @@ export default function ThreePillarsSection() {
 
         <div className="pillars-grid">
           {pillars.map((pillar) => (
-            <article key={pillar.number} className="pillar-card">
-              <div className="pillar-image-container">
-                <Image
-                  src={pillar.image}
-                  alt={pillar.title}
-                  fill
-                  sizes="(max-width: 900px) 100vw, 33vw"
-                  className="pillar-image"
-                />
-                <div className="pillar-image-overlay" />
-                <span className="pillar-badge">{pillar.badge}</span>
-                <span className="pillar-number">{pillar.number}</span>
-              </div>
+            <ElasticFrame
+              key={pillar.number}
+              borderRadius={20}
+              borderColor="rgba(23, 24, 61, 0.4)"
+              glowColor="rgba(212, 163, 89, 0.5)"
+              veilColor="rgba(212, 163, 89, 0.12)"
+              maxDisplacement={28}
+              pointerRadius={95}
+              className="pillar-elastic-wrapper"
+            >
+              <article className="pillar-card">
+                <div className="pillar-image-container">
+                  <Image
+                    src={pillar.image}
+                    alt={pillar.title}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 33vw"
+                    className="pillar-image"
+                  />
+                  <div className="pillar-image-overlay" />
+                  <span className="pillar-badge">{pillar.badge}</span>
+                  <span className="pillar-number">{pillar.number}</span>
+                </div>
 
-              <div className="pillar-body">
-                <span className="pillar-category">{pillar.category}</span>
-                <h3 className="pillar-title">{pillar.title}</h3>
-                <h4 className="pillar-subtitle">{pillar.subtitle}</h4>
-                <p className="pillar-description">{pillar.description}</p>
+                <div className="pillar-body">
+                  <span className="pillar-category">{pillar.category}</span>
+                  <h3 className="pillar-title">{pillar.title}</h3>
+                  <h4 className="pillar-subtitle">{pillar.subtitle}</h4>
+                  <p className="pillar-description">{pillar.description}</p>
 
-                <div className="pillar-features">
-                  <span className="features-headline">KEY ATTRIBUTES</span>
-                  <ul>
-                    {pillar.features.map((feat, i) => (
-                      <li key={i}>
-                        <CheckCircle2 size={14} className="feature-check-icon" />
-                        <span>{feat}</span>
-                      </li>
+                  <div className="pillar-features">
+                    <span className="features-headline">KEY ATTRIBUTES</span>
+                    <ul>
+                      {pillar.features.map((feat, i) => (
+                        <li key={i}>
+                          <CheckCircle2 size={14} className="feature-check-icon" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="pillar-specs-row">
+                    {pillar.specs.map((sp, i) => (
+                      <div key={i} className="pillar-spec-item">
+                        <small>{sp.label}</small>
+                        <b>{sp.value}</b>
+                      </div>
                     ))}
-                  </ul>
-                </div>
+                  </div>
 
-                <div className="pillar-specs-row">
-                  {pillar.specs.map((sp, i) => (
-                    <div key={i} className="pillar-spec-item">
-                      <small>{sp.label}</small>
-                      <b>{sp.value}</b>
-                    </div>
-                  ))}
+                  <Link href={pillar.ctaHref} className="pillar-cta-button">
+                    <span>{pillar.ctaText}</span>
+                    <ArrowUpRight size={15} />
+                  </Link>
                 </div>
-
-                <Link href={pillar.ctaHref} className="pillar-cta-button">
-                  <span>{pillar.ctaText}</span>
-                  <ArrowUpRight size={15} />
-                </Link>
-              </div>
-            </article>
+              </article>
+            </ElasticFrame>
           ))}
         </div>
       </div>

@@ -5,15 +5,15 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { 
   ArrowRight, ArrowUpRight, Check, ChevronDown, Menu, Minus, Phone, 
-  Plus, Search, ShoppingBag, Sparkles, X 
+  Plus, Search, ShoppingBag, Sparkles, X, Sliders, ShieldCheck, Heart 
 } from 'lucide-react';
 import HeroCarousel from './HeroCarousel';
 import ThreePillarsSection from './ThreePillarsSection';
 import ShopByColorSection from './ShopByColorSection';
 import ShopBestsellersSection from './ShopBestsellersSection';
+import ElasticFrameShowcase from './ElasticFrameShowcase';
 import CustomerReviewsSection from './CustomerReviewsSection';
 import BalanceSections from './BalanceSections';
-import type { Product } from '@/lib/types';
 
 export interface CartItem {
   id: string;
@@ -126,10 +126,11 @@ export default function Storefront() {
         </div>
       </div>
 
-      {/* Sticky Main Navigation */}
+      {/* Sticky Main Navigation: Properly Rearranged Layout */}
       <header className="site-main-header">
-        <div className="header-inner">
-          <div className="header-left">
+        <div className="header-inner-rearranged">
+          {/* 1. Left: Brand Logo Lockup & Mobile Toggle */}
+          <div className="header-brand-cluster">
             <button
               type="button"
               className="icon-button mobile-menu-toggle"
@@ -139,58 +140,115 @@ export default function Storefront() {
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
 
-            <nav className={`desktop-nav-menu ${menuOpen ? 'mobile-open' : ''}`}>
-              <a href="#three-pillars" onClick={() => setMenuOpen(false)}>PILLARS</a>
-              <a href="#shop-by-color" onClick={() => setMenuOpen(false)}>SHOP BY COLOR</a>
-              <a href="#bestsellers" onClick={() => setMenuOpen(false)}>BESTSELLERS</a>
-              <a href="#reviews" onClick={() => setMenuOpen(false)}>REVIEWS (10K+)</a>
-              <a href="#fabric-tech" onClick={() => setMenuOpen(false)}>FABRIC TECH</a>
-              <a href="#teams" onClick={() => setMenuOpen(false)}>TEAM ORDERS</a>
-              <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
-            </nav>
+            <Link href="#top" className="brand-logo-link" aria-label="YEVA Home">
+              <Image
+                src="/images/yeva-wordmark.png"
+                alt="YEVA MED"
+                width={132}
+                height={44}
+                priority
+                className="brand-logo-img"
+              />
+            </Link>
           </div>
 
-          {/* Central Wordmark Brand */}
-          <Link href="#top" className="brand-logo-link" aria-label="YEVA Home">
-            <Image
-              src="/images/yeva-wordmark.png"
-              alt="YEVA MED"
-              width={140}
-              height={46}
-              priority
-              className="brand-logo-img"
-            />
-          </Link>
+          {/* 2. Center: Properly Arranged Desktop Navigation Links */}
+          <nav className="header-center-nav">
+            <a href="#bestsellers" className="nav-link">BESTSELLERS</a>
+            <a href="#shop-by-color" className="nav-link">SHOP BY COLOR</a>
+            <a href="#three-pillars" className="nav-link">SEDESCOPES</a>
+            <a href="#three-pillars" className="nav-link">CAREKITS</a>
+            <a href="#elastic-cards" className="nav-link nav-highlight">
+              <Sparkles size={12} className="nav-sparkle-icon" />
+              <span>ELASTIC CARDS</span>
+            </a>
+            <a href="#reviews" className="nav-link">REVIEWS (10K+)</a>
+            <a href="#fabric-tech" className="nav-link">FABRIC TECH</a>
+            <a href="#teams" className="nav-link">TEAM ORDERS</a>
+          </nav>
 
-          {/* Header Right Actions */}
-          <div className="header-right">
-            <a href="tel:+919544044266" className="header-helpline-link">
-              <Phone size={14} />
+          {/* 3. Right: Utility & Customer Action Cluster */}
+          <div className="header-actions-cluster">
+            <a href="tel:+919544044266" className="header-helpline-pill" title="Clinical Helpline">
+              <Phone size={13} />
               <span>9544044266</span>
             </a>
 
             <button
               type="button"
-              className="header-icon-btn"
+              className="header-icon-action"
               onClick={() => setSearchOpen(!searchOpen)}
-              aria-label="Search collection"
+              aria-label="Search medical wear"
+              title="Search"
             >
-              <Search size={19} />
+              <Search size={18} />
             </button>
 
             <button
               type="button"
-              className="header-bag-btn"
+              className="header-bag-action"
               onClick={() => setCartOpen(true)}
-              aria-label="Open shopping bag"
+              aria-label="Open medical bag"
             >
-              <ShoppingBag size={18} />
-              <span className="bag-label">BAG</span>
-              <span className="bag-badge">{totalQuantity}</span>
+              <ShoppingBag size={17} />
+              <span className="bag-label-text">BAG</span>
+              <span className="bag-counter-bubble">{totalQuantity}</span>
             </button>
           </div>
         </div>
       </header>
+
+      {/* Mobile Slide-Out Navigation Drawer */}
+      {menuOpen && (
+        <div className="mobile-drawer-backdrop" onClick={() => setMenuOpen(false)}>
+          <aside className="mobile-nav-drawer" onClick={e => e.stopPropagation()}>
+            <div className="mobile-drawer-head">
+              <Image
+                src="/images/yeva-wordmark.png"
+                alt="YEVA"
+                width={120}
+                height={40}
+                className="mobile-drawer-logo"
+              />
+              <button
+                type="button"
+                className="mobile-drawer-close"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className="mobile-drawer-links">
+              <div className="drawer-group-title">CLINICAL COLLECTIONS</div>
+              <a href="#bestsellers" onClick={() => setMenuOpen(false)}>Shop Bestsellers</a>
+              <a href="#shop-by-color" onClick={() => setMenuOpen(false)}>Shop by Color (Flat-Lay)</a>
+              <a href="#three-pillars" onClick={() => setMenuOpen(false)}>Acoustic Sedescopes</a>
+              <a href="#three-pillars" onClick={() => setMenuOpen(false)}>Course-Wise CareKits</a>
+              <a href="#elastic-cards" onClick={() => setMenuOpen(false)} className="drawer-highlight-link">
+                <Sparkles size={14} />
+                <span>Elastic Card Physics</span>
+              </a>
+
+              <div className="drawer-group-title">INNOVATION & EVIDENCE</div>
+              <a href="#reviews" onClick={() => setMenuOpen(false)}>Verified Reviews (10,615+)</a>
+              <a href="#fabric-tech" onClick={() => setMenuOpen(false)}>Fabric Technology (RYX / LITE)</a>
+              <a href="#why-yeva" onClick={() => setMenuOpen(false)}>Why Healthcare Trusts YEVA</a>
+              <a href="#teams" onClick={() => setMenuOpen(false)}>Hospital & Team Orders</a>
+              <a href="#faq" onClick={() => setMenuOpen(false)}>Frequently Asked Questions</a>
+            </div>
+
+            <div className="mobile-drawer-footer">
+              <a href="tel:+919544044266" className="mobile-helpline-cta">
+                <Phone size={15} />
+                <span>Call Helpline: +91 95440 44266</span>
+              </a>
+              <small>Serving Delhi · Mangalore · Bangalore</small>
+            </div>
+          </aside>
+        </div>
+      )}
 
       {/* Search Drawer Panel */}
       {searchOpen && (
@@ -222,7 +280,7 @@ export default function Storefront() {
       {/* 1. TOP SECTION: Hero Carousel (CodePen Expanding Horizontal Carousel - 3D Removed) */}
       <HeroCarousel />
 
-      {/* 2. SECOND SECTION: 3 Columns (Sedescope, Scrub, CareKit) */}
+      {/* 2. SECOND SECTION: 3 Columns (Sedescope, Scrub, CareKit - with ElasticFrame effects!) */}
       <ThreePillarsSection />
 
       {/* 3. THIRD SECTION: Color-wise showing scrub photo and their details */}
@@ -231,10 +289,13 @@ export default function Storefront() {
       {/* 4. FOURTH SECTION: Shop for Best Seller */}
       <ShopBestsellersSection onAddToCart={handleAddToCart} />
 
-      {/* 5. FIFTH SECTION: Customer Review and Feedback */}
+      {/* 5. INTERACTIVE ELASTIC FRAME CARD EFFECT SHOWCASE (Scrolltide Interactive Membrane Effect) */}
+      <ElasticFrameShowcase onAddToCart={handleAddToCart} />
+
+      {/* 6. FIFTH SECTION: Customer Review and Feedback */}
       <CustomerReviewsSection />
 
-      {/* 6. BALANCE SECTION: Fabric Tech, Why Choose YEVA, Team Orders, FAQ, Newsletter, Luxury Footer */}
+      {/* 7. BALANCE SECTION: Fabric Tech, Why Choose YEVA, Team Orders, FAQ, Newsletter, Luxury Footer */}
       <BalanceSections />
 
       {/* Live Toast Notification */}
