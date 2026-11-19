@@ -149,12 +149,14 @@ export default function ShopByColorSection({ onAddToCart }: Props) {
     <section className="shop-by-color-section" id="shop-by-color">
       <div className="section-container">
         {/* Header matching user reference screenshot 1 */}
+        <div className="color-title-group">
+          <div className="kicker-badge-row">
+            <span className="section-pill-tag">03 / SIGNATURE SHADES</span>
+            <span className="section-pill-meta">FOLDED FLAT-LAY PRESENTATION</span>
+          </div>
+        </div>
         <div className="color-section-header">
           <div className="color-title-group">
-            <div className="kicker-badge-row">
-              <span className="section-pill-tag">03 / SIGNATURE SHADES</span>
-              <span className="section-pill-meta">FOLDED FLAT-LAY PRESENTATION</span>
-            </div>
             <h2 className="color-section-title">Shop by Color</h2>
             <p className="color-section-subtitle">
               Folded studio views of our signature medical scrubs on matching solid color fields. Find the tone that defines your everyday practice.
@@ -193,7 +195,7 @@ export default function ShopByColorSection({ onAddToCart }: Props) {
                   setActiveModal(product);
                 }}
               >
-                <div 
+                <div
                   className="color-card-image-box"
                   style={{ backgroundColor: product.hex }}
                 >
@@ -205,7 +207,7 @@ export default function ShopByColorSection({ onAddToCart }: Props) {
                     className="color-card-image"
                   />
                   <div className="color-card-overlay">
-                    <button 
+                    <button
                       type="button"
                       className="color-card-quick-view-btn"
                       onClick={(e) => {
@@ -237,9 +239,9 @@ export default function ShopByColorSection({ onAddToCart }: Props) {
       {activeModal && (
         <div className="color-modal-backdrop" onClick={() => setActiveModal(null)}>
           <div className="color-modal" onClick={(e) => e.stopPropagation()}>
-            <button 
+            <button
               type="button"
-              className="color-modal-close" 
+              className="color-modal-close"
               onClick={() => setActiveModal(null)}
               aria-label="Close modal"
             >
@@ -247,7 +249,7 @@ export default function ShopByColorSection({ onAddToCart }: Props) {
             </button>
 
             <div className="color-modal-grid">
-              <div 
+              <div
                 className="color-modal-image-col"
                 style={{ backgroundColor: activeModal.hex }}
               >
@@ -262,9 +264,9 @@ export default function ShopByColorSection({ onAddToCart }: Props) {
 
               <div className="color-modal-info-col">
                 <div className="color-modal-swatch-pill">
-                  <span 
-                    className="modal-color-dot" 
-                    style={{ backgroundColor: activeModal.hex }} 
+                  <span
+                    className="modal-color-dot"
+                    style={{ backgroundColor: activeModal.hex }}
                   />
                   <span>{activeModal.tone}</span>
                 </div>

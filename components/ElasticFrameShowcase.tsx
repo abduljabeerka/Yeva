@@ -51,7 +51,7 @@ export default function ElasticFrameShowcase({ onAddToCart }: Props) {
     <section className="elastic-showcase-section" id="elastic-cards">
       <div className="section-container">
         {/* Header */}
-        <div className="elastic-showcase-header">
+        <div className="elastic-showcase-header" style={{ display: 'none' }}>
           <div className="elastic-badge-row">
             <span className="section-pill-tag">INTERACTIVE CARD PHYSICS</span>
             <span className="section-pill-meta">SCROLLTIDE ELASTIC FRAME ENGINE</span>
